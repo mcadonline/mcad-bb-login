@@ -24,7 +24,7 @@ body {
   font-weight: 200;
   background: #222;
   color: #fff;
-  padding-top: 8em;
+  padding-top: 7em;
 }
 a {
   color: #fff;
@@ -135,4 +135,25 @@ button[type="submit"]:active {
 .forgot-password a:hover,
 .forgot-password a:active {
   color: #fff;
+}
+
+@media (max-width: 33em) {
+  body {
+    padding-top: 5em;
+
+  }
+  .page-heading {
+    font-size: 4.5em;
+    margin-bottom: 0.25em;
+  }
+}
+
+@media (max-width: 20em) {
+  body {
+    padding-top: 4em;
+  }
+  .page-heading {
+    font-size: 4em;
+    margin-bottom: 0;
+  }
 }
