@@ -4,7 +4,7 @@
   "description": "New login page for Bb",
   "main": "index.js",
   "scripts": {
-    "dev:client": "browser-sync start --server --files \"*.html,css/*.css\""
+    "dev": "browser-sync start --server 'proto' --files 'proto'"
   },
   "author": "James Johnson <james_johnson@mcad.edu>",
   "license": "ISC",
