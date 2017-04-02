@@ -36,6 +36,28 @@ img {
   max-width: 100%;
 }
 
+/* .brand-frame */
+.brand-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #ecadf9;
+  background: #962DAC;
+}
+.brand-frame svg {
+  margin: 0 0.33em;
+}
+.brand-frame svg g {
+  fill: #ecadf9;
+}
+
+
 .page-heading {
   font-size: 7em;
   font-weight: 100;
@@ -43,7 +65,6 @@ img {
 }
 
 form {
-
   padding: 1rem;
   max-width: 25rem;
   margin: auto;
@@ -99,25 +120,6 @@ button[type="submit"]:active {
 :-moz-placeholder { /* Firefox 18- */
   color: var(--placeholder-color);
 }
-
-/* .brand-frame */
-.brand-frame {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  padding: 1em;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 300;
-  letter-spacing: 0.08rem;
-  background: #962DAC;
-}
-.brand-frame img {
-  margin: 0 0.33em;
-}
-
 
 
 /* .forgot-password link */
