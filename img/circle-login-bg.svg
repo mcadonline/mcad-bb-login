@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="293px" height="928px" viewBox="0 0 293 928" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>circles</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0.25781251%" y1="49.7500002%" x2="101.257813%" y2="49.7500002%" id="linearGradient-1">
+            <stop stop-color="#3023AE" offset="0%"></stop>
+            <stop stop-color="#53A0FE" offset="47.5247532%"></stop>
+            <stop stop-color="#B4ED50" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.585314764">
+        <g id="black" transform="translate(-475.000000, -333.000000)" stroke="url(#linearGradient-1)">
+            <g id="circles" style="mix-blend-mode: luminosity;" transform="translate(476.000000, 334.000000)">
+                <g id="Group" transform="translate(195.000000, 0.000000)">
+                    <circle id="Oval-2" cx="95" cy="95" r="95"></circle>
+                    <circle id="Oval-2" cx="128.166667" cy="126.666667" r="95"></circle>
+                    <circle id="Oval-2-Copy" cx="161.333333" cy="158.333333" r="95"></circle>
+                </g>
+                <g id="Group-Copy" transform="translate(145.000000, 154.000000)">
+                    <circle id="Oval-2" cx="95" cy="95" r="95"></circle>
+                    <circle id="Oval-2" cx="128.166667" cy="126.666667" r="95"></circle>
+                    <circle id="Oval-2-Copy" cx="161.333333" cy="158.333333" r="95"></circle>
+                    <circle id="Oval-2-Copy-2" cx="194.5" cy="190" r="95"></circle>
+                    <circle id="Oval-2-Copy-5" cx="230" cy="222" r="95"></circle>
+                </g>
+                <g id="Group-Copy-2" transform="translate(79.000000, 357.000000)">
+                    <circle id="Oval-2" cx="95" cy="95" r="95"></circle>
+                    <circle id="Oval-2" cx="128.166667" cy="126.666667" r="95"></circle>
+                    <circle id="Oval-2-Copy" cx="161.333333" cy="158.333333" r="95"></circle>
+                    <circle id="Oval-2-Copy-2" cx="194.5" cy="190" r="95"></circle>
+                    <circle id="Oval-2-Copy-3" cx="256" cy="253" r="95"></circle>
+                    <circle id="Oval-2-Copy-5" cx="230" cy="222" r="95"></circle>
+                    <circle id="Oval-2-Copy-4" cx="294" cy="285" r="95"></circle>
+                </g>
+                <g id="Group-Copy-3" transform="translate(0.000000, 547.000000)">
+                    <circle id="Oval-2" cx="95" cy="95" r="95"></circle>
+                    <circle id="Oval-2" cx="128.166667" cy="126.666667" r="95"></circle>
+                    <circle id="Oval-2-Copy" cx="161.333333" cy="158.333333" r="95"></circle>
+                    <circle id="Oval-2-Copy-2" cx="194.5" cy="190" r="95"></circle>
+                    <circle id="Oval-2-Copy-3" cx="256" cy="253" r="95"></circle>
+                    <circle id="Oval-2-Copy-5" cx="230" cy="222" r="95"></circle>
+                    <circle id="Oval-2-Copy-4" cx="294" cy="285" r="95"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

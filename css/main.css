@@ -1,0 +1,136 @@
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+:root {
+  --inactive-color: #888;
+  --placeholder-color: #444;
+  --focus-border-color: #fff;
+  --login-button-color: #7ED321;
+}
+body {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 200;
+  background: #222;
+  color: #fff;
+  padding-top: 8em;
+}
+a {
+  color: #fff;
+}
+h1, h2, h3, h4, h5 {
+  font-weight: 200;
+}
+img {
+  max-width: 100%;
+}
+
+.page-heading {
+  font-size: 7em;
+  font-weight: 100;
+  text-align: center;
+}
+
+form {
+
+  padding: 1rem;
+  max-width: 25rem;
+  margin: auto;
+}
+input {
+  display: block;
+  width: 100%;
+  color: white;
+  font-weight: 100;
+  font-size: 1.5rem;
+  max-width: 25rem;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 0.125rem solid var(--inactive-color);
+  margin: 1em 0;
+  background:transparent;
+}
+input:focus {
+  outline: none;
+  border-color: var(--focus-border-color);
+}
+button[type="submit"] {
+  background-color: transparent;
+  color: var(--login-button-color);
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  border: 0.125rem solid var(--login-button-color);
+  margin: 3rem 0 1rem;
+  padding: 1rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+button[type="submit"]:hover {
+  background-color: var(--login-button-color);
+  color: #222;
+}
+button[type="submit"]:active {
+  background-color: #fff;
+}
+
+/* placeholders */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: var(--placeholder-color);
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: var(--placeholder-color);
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: var(--placeholder-color);
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: var(--placeholder-color);
+}
+
+/* .brand-frame */
+.brand-frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 0.08rem;
+  background: #962DAC;
+}
+.brand-frame img {
+  margin: 0 0.33em;
+}
+
+
+
+/* .forgot-password link */
+.forgot-password {
+  text-align: right;
+}
+.forgot-password a {
+  display: inline-block;
+  color: var(--inactive-color);
+  text-decoration: none;
+  border-bottom: 0.125rem solid var(--inactive-color);
+}
+.forgot-password a:hover,
+.forgot-password a:active {
+  color: #fff;
+}

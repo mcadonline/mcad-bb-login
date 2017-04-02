@@ -1,0 +1,14 @@
+{
+  "name": "mcad-blackboard-login-2017",
+  "version": "1.0.0",
+  "description": "New login page for Bb",
+  "main": "index.js",
+  "scripts": {
+    "dev:client": "browser-sync start --server --files \"*.html,css/*.css\""
+  },
+  "author": "James Johnson <james_johnson@mcad.edu>",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.8"
+  }
+}
