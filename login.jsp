@@ -181,6 +181,7 @@ html {
   width: 100%;
   text-align: center;
   text-transform: uppercase;
+  border-radius: 0;
 }
 #mcad-login-page [type="submit"]:hover {
   background-color: var(--login-button-color);
