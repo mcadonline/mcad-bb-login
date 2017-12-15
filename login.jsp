@@ -283,6 +283,10 @@ must be removed before the changes will take effect.
             font-size: 0.9rem;
           }
 
+          #loginAnnouncements a {
+            border-bottom: none;
+          }
+
 
           @media (max-width: 33em) {
             #mcad-login-page {
