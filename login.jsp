@@ -275,6 +275,7 @@ must be removed before the changes will take effect.
           #loginAnnouncements ul li>strong:first-child {
             font-weight: 300;
             font-size: 1.5rem;
+            color: #ccc;
           }
 
           #loginAnnouncements .announcementDate {
@@ -286,8 +287,8 @@ must be removed before the changes will take effect.
             border-bottom: none;
           }
 
-          #loginAnnouncements .vtbegenerated ul li strong:first-child {
-            color: #ccc !important;
+          #loginAnnouncements ul li .vtbegenerated strong:first-child {
+            color: #ccc;
           }
 
           #loginAnnouncements .vtbegenerated {
