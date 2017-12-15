@@ -273,7 +273,6 @@ must be removed before the changes will take effect.
           }
 
           #loginAnnouncements ul li>strong:first-child {
-            color: #ccc;
             font-weight: 300;
             font-size: 1.5rem;
           }
@@ -287,6 +286,13 @@ must be removed before the changes will take effect.
             border-bottom: none;
           }
 
+          #loginAnnouncements .vtbegenerated ul li strong:first-child {
+            color: #ccc !important;
+          }
+
+          #loginAnnouncements .vtbegenerated {
+            margin: 1rem 0 !important;
+          }
 
           @media (max-width: 33em) {
             #mcad-login-page {
