@@ -69,6 +69,7 @@ must be removed before the changes will take effect.
 
       <bbNG:cssBlock>
         <style type="text/css">
+         
           /* .visuallyhidden */
 
           #loginFormList label {
@@ -261,15 +262,15 @@ must be removed before the changes will take effect.
           /* Login Page Announcements */
 
           #loginAnnouncements {
-            margin: 4rem 0;
-            width: 100%;
-            z-index: 100;
+            padding: 4rem 0;
+            width: 90%;
           }
 
           #loginAnnouncements li {
             background: #171717;
             color: #ccc;
-            border-left: 0.25rem solid yellow
+            border-left: 0.25rem solid yellow;
+            text-align: left;
           }
 
           #loginAnnouncements ul li>strong:first-child {
@@ -286,6 +287,10 @@ must be removed before the changes will take effect.
           #loginAnnouncements a {
             border-bottom: none;
           }
+
+#loginAnnouncements ul {
+  width: auto;
+}
 
           #loginAnnouncements ul li .vtbegenerated strong:first-child {
             color: #ccc;
@@ -316,7 +321,11 @@ must be removed before the changes will take effect.
               font-size: 4em;
               margin-bottom: 0;
             }
+            #loginAnnouncements .announcementDate {
+              float: none;
+            }
           }
+        
         </style>
       </bbNG:cssBlock>
 
