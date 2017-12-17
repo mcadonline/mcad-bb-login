@@ -273,9 +273,13 @@ must be removed before the changes will take effect.
             text-align: left;
           }
 
+          /* Bb Announcement Heading ... crazy, right? */
           #loginAnnouncements ul li>strong:first-child {
             font-weight: 300;
             font-size: 1.5rem;
+            line-height: 1.2;
+            display: block;
+            margin-bottom: 0.5rem;
             color: #ccc;
           }
 
@@ -288,9 +292,9 @@ must be removed before the changes will take effect.
             border-bottom: none;
           }
 
-#loginAnnouncements ul {
-  width: auto;
-}
+          #loginAnnouncements ul {
+            width: auto;
+          }
 
           #loginAnnouncements ul li .vtbegenerated strong:first-child {
             color: #ccc;
@@ -299,6 +303,12 @@ must be removed before the changes will take effect.
           #loginAnnouncements .vtbegenerated {
             margin: 1rem 0 !important;
           }
+          
+          #loginAnnouncements .announcementDate {
+              float: none;
+              text-align: left;
+              display: block;
+            }
 
           @media (max-width: 33em) {
             #mcad-login-page {
@@ -320,9 +330,6 @@ must be removed before the changes will take effect.
             #mcad-login-page .page-heading {
               font-size: 4em;
               margin-bottom: 0;
-            }
-            #loginAnnouncements .announcementDate {
-              float: none;
             }
           }
         
