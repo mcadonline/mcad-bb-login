@@ -17,46 +17,56 @@ This is a standard wrapper for all AS pages.  It is recommended that you keep th
 
     <bbNG:jsBlock>
       <script type="text/javascript">
-        function loadLoginPage() {
-          if (top != self) {
-            top.location.replace(self.location.href);
-          }
-          if (document.forms.login.user_id != undefined) {
-            document.forms.login.user_id.focus();
-          }
-          setTimeout("triggerScreenreaderAlert()", 500);
-        }
+           function loadLoginPage() {
+      if (top != self) {
+        top.location.replace(self.location.href);
+      }
+      if (document.forms.login.user_id != undefined) {
+        document.forms.login.user_id.focus();
+      }
+      setTimeout("triggerScreenreaderAlert()", 500);
+    }
 
-        function triggerScreenreaderAlert() {
-          if (document.getElementById('loginErrorMessage')) {
-            $('loginErrorMessage').update($('loginErrorMessage').innerHTML);
-          }
-        }
+    function triggerScreenreaderAlert() {
+      if (document.getElementById('loginErrorMessage')) {
+        $('loginErrorMessage').update($('loginErrorMessage').innerHTML);
+      }
+    }
 
-        // MCAD Login Specific Stuff Below
+    // MCAD Login Specific Stuff Below
 
-        // fires fn when document is in ready state
-        function ready(fn) {
-          if (document.readyState != 'loading') {
-            fn();
-          } else {
-            document.addEventListener('DOMContentLoaded', fn);
-          }
-        }
+    // fires fn when document is in ready state
+    function ready(fn) {
+      if (document.readyState != 'loading') {
+        fn();
+      } else {
+        document.addEventListener('DOMContentLoaded', fn);
+      }
+    }
 
-        function setPlaceholder(selector, placeholderVal) {
-          document
-            .querySelector(selector)
-            .setAttribute('placeholder', placeholderVal);
-        }
+    function setPlaceholder(selector, placeholderVal) {
+      document
+        .querySelector(selector)
+        .setAttribute('placeholder', placeholderVal);
+    }
 
-        function init() {
-          setPlaceholder('#user_id', 'Username');
-          setPlaceholder('#password', 'Password');
-        }
+    function handleAuxLoginToggle() {
+      const auxLoginEl = document.querySelector('.aux-login-container');
+      const toggleButton = document.querySelector('.js-toggle-aux-login');
+      toggleButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        auxLoginEl.classList.toggle('is-open');
+      });
+    }
 
-        // fire off init when doc is ready
-        ready(init);
+    function init() {
+      setPlaceholder('#user_id', 'Username');
+      setPlaceholder('#password', 'Password');
+      handleAuxLoginToggle();
+    }
+
+    // fire off init when doc is ready
+    ready(init);
 
       </script>
     </bbNG:jsBlock>
@@ -70,269 +80,364 @@ must be removed before the changes will take effect.
       <bbNG:cssBlock>
         <style type="text/css">
          
-          /* .visuallyhidden */
+ /* .visuallyhidden */
 
-          #loginFormList label {
-            position: absolute;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            height: 1px;
-            width: 1px;
-            margin: -1px;
-            padding: 0;
-            border: 0;
-          }
-
-          html {
-            box-sizing: border-box;
-            height: 100%;
-          }
-
-          *,
-          *:before,
-          *:after {
-            box-sizing: inherit;
-          }
-
-          :root {
-            --inactive-color: #888;
-            --placeholder-color: #444;
-            --focus-border-color: #fff;
-            --login-button-color: #7ED321;
-            --sans-font-family: 'Helvetica Neue', sans-serif;
-            --frame-color: #666;
-          }
-
-          #mcad-login-page {
-            font-size: 16px;
-            font-family: var(--sans-font-family);
-            font-weight: 200;
-            background: #222;
-            color: #fff;
-            padding-top: 7em;
-            min-height: 100%;
-          }
-
-          #mcad-login-page a {
-            color: #fff;
-          }
-
-          #mcad-login-page h1 {
-            font-weight: 200;
-            margin: 0.25em;
-          }
-
-          /* .brand-frame */
-
-          #mcad-login-page .brand-frame {
-            font-family: var(--sans-font-family);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 90%;
-            margin: 0 5%;
-            border-bottom: 1px solid var(--frame-color);
-            z-index: 100;
-            padding: 1em;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 400;
-            color: var(--frame-color);
-          }
-
-          #mcad-login-page .brand-frame svg {
-            margin: 0 0.33em;
-          }
-
-          #mcad-login-page .brand-frame svg g {
-            fill: var(--frame-color);
-          }
-
-          #mcad-login-page .page-heading {
-            font-size: 7em;
-            font-weight: 100;
-            text-align: center;
-          }
-
-          #mcad-login-page .mcad-login-form {
-            padding: 1rem;
-            max-width: 25rem;
-            margin: auto;
-          }
-
-          #mcad-login-page input {
-            display: block;
-            width: 100%;
-            color: white;
-            font-weight: 100;
-            font-size: 1.5rem;
-            max-width: 25rem;
-            padding: 0.5rem 0;
-            border: none;
-            border-bottom: 0.125rem solid var(--inactive-color);
-            margin: 1em 0;
-            background: transparent;
-            border-radius: 0;
-          }
-
-          #mcad-login-page input:focus {
-            outline: none;
-            border-color: var(--focus-border-color);
-          }
-
-          #mcad-login-page [type="submit"] {
-            background-color: transparent;
-            font-weight: 300;
-            color: var(--login-button-color);
-            font-size: 1rem;
-            letter-spacing: 0.1rem;
-            border: 0.125rem solid var(--login-button-color);
-            margin: 3rem 0 1rem;
-            padding: 1rem;
-            display: block;
-            width: 100%;
-            text-align: center;
-            text-transform: uppercase;
-            border-radius: 0;
-          }
-
-          #mcad-login-page [type="submit"]:hover {
-            background-color: var(--login-button-color);
-            color: #222;
-          }
-
-          #mcad-login-page [type="submit"]:active {
-            background-color: #fff;
-          }
-
-          /* placeholders */
-
-          ::-webkit-input-placeholder {
-            /* Chrome/Opera/Safari */
-            color: var(--placeholder-color);
-          }
-
-          ::-moz-placeholder {
-            /* Firefox 19+ */
-            color: var(--placeholder-color);
-          }
-
-          :-ms-input-placeholder {
-            /* IE 10+ */
-            color: var(--placeholder-color);
-          }
-
-          :-moz-placeholder {
-            /* Firefox 18- */
-            color: var(--placeholder-color);
-          }
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
 
 
-          /* forgot-password link */
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
-          #mcad-login-page .forgot {
-            display: block;
-            font-size: 0.8em;
-            text-align: right;
-          }
+:root {
+  --inactive-color: #888;
+  --placeholder-color: #444;
+  --focus-border-color: #fff;
+  --login-button-color: #7ED321;
+  --sans-font-family: 'Helvetica Neue', sans-serif;
+  --frame-color: #666;
+  --max-width: 32em;
+}
 
-          #mcad-login-page .forgot a {
-            display: inline-block;
-            color: var(--inactive-color);
-            text-decoration: none;
-            border-bottom: 0.125rem solid var(--inactive-color);
-          }
+#mcad-login-page {
+  font-size: 16px;
+  line-height: 1.4;
+  font-family: var(--sans-font-family);
+  font-weight: 200;
+  background: #222;
+  color: #fff;
+  padding-top: 7em;
+  height: 100%;
+}
+#mcad-login-page a {
+  color: #fff;
+}
 
-          #mcad-login-page .forgot a:hover,
-          #mcad-login-page .forgot a:active {
-            color: #fff;
-          }
+#mcad-login-page h1 {
+  font-weight: 200;
+  margin: 0.25em;
+}
 
-          /* Errors */
+#mcad-login-page ul {
+  list-style-type: none;
+}
 
-          #loginErrorMessage {
-            background: transparent;
-            border: 0;
-            max-width: 32em;
-            margin: auto;
-            font-weight: 300;
-            color: #ffd630;
-          }
+/* .brand-frame */
 
-          /* Login Page Announcements */
+#mcad-login-page .brand-frame {
+  font-family: var(--sans-font-family);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90%;
+  margin: 0 5%;
+  border-bottom: 1px solid var(--frame-color);
+  z-index: 100;
+  padding: 1em;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--frame-color);
+}
 
-          #loginAnnouncements {
-            padding: 4rem 0;
-            width: 90%;
-          }
+#mcad-login-page .brand-frame svg {
+  margin: 0 0.33em;
+}
 
-          #loginAnnouncements li {
-            background: #171717;
-            color: #ccc;
-            border-left: 0.25rem solid yellow;
-            text-align: left;
-          }
+#mcad-login-page .brand-frame svg g {
+  fill: var(--frame-color);
+}
 
-          /* Bb Announcement Heading ... crazy, right? */
-          #loginAnnouncements ul li>strong:first-child {
-            font-weight: 300;
-            font-size: 1.5rem;
-            line-height: 1.2;
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #ccc;
-          }
 
-          #loginAnnouncements .announcementDate {
-            color: #666;
-            font-size: 0.9rem;
-          }
+#mcad-login-page .page-heading,
+#mcad-login-page .page-subheading {
+  text-align: center;
+  font-weight: 100;
+  line-height: 1;
+  margin: 1rem;
+}
 
-          #loginAnnouncements a {
-            border-bottom: none;
-          }
+#mcad-login-page .page-heading {
+  font-size: 5.1em;
+}
 
-          #loginAnnouncements ul {
-            width: auto;
-          }
+#mcad-login-page .page-subheading {
+  font-size: 1.5rem;
+  margin-bottom: 2em;
+}
 
-          #loginAnnouncements ul li .vtbegenerated strong:first-child {
-            color: #ccc;
-          }
 
-          #loginAnnouncements .vtbegenerated {
-            margin: 1rem 0 !important;
-          }
-          
-          #loginAnnouncements .announcementDate {
-              float: none;
-              text-align: left;
-              display: block;
-            }
+#mcad-login-page .mcad-login-form {
+  padding: 1rem;
+  max-width: 25rem;
+  margin: auto;
+}
 
-          @media (max-width: 33em) {
-            #mcad-login-page {
-              padding-top: 5em;
-            }
-            #mcad-login-page .page-heading {
-              font-size: 4.5em;
-              margin-bottom: 0.25em;
-            }
-            #loginErrorMessage {
-              max-width: 20em;
-            }
-          }
+#mcad-login-page #loginFormList {
+  padding: 0;
+}
 
-          @media (max-width: 20em) {
-            #mcad-login-page {
-              padding-top: 4em;
-            }
-            #mcad-login-page .page-heading {
-              font-size: 4em;
-              margin-bottom: 0;
-            }
-          }
-        
+#loginFormTitle,
+#loginFormText {
+  /* visually hidden */
+  position: absolute !important;
+  height: 1px; width: 1px; 
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+
+#mcad-login-page input {
+  display: block;
+  width: 100%;
+  color: white;
+  font-weight: 100;
+  font-size: 1.5rem;
+  max-width: 25rem;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 0.125rem solid var(--inactive-color);
+  margin: 1em 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+#mcad-login-page input:focus {
+  outline: none;
+  border-color: var(--focus-border-color);
+}
+
+#mcad-login-page [type="submit"],
+#mcad-login-page .button {
+  background-color: transparent;
+  font-weight: 300;
+  color: var(--login-button-color);
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  border: 0.125rem solid var(--login-button-color);
+  margin: 1rem 0;
+  padding: 1rem;
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: 0;
+  text-decoration: none;
+}
+
+#mcad-login-page [type="submit"] {
+  margin-top: 3rem;
+}
+
+#mcad-login-page [type="submit"]:hover,
+#mcad-login-page .button:hover {
+  background-color: var(--login-button-color);
+  color: #222;
+}
+
+#mcad-login-page [type="submit"]:active,
+#mcad-login-page .button:active {
+  background-color: #fff;
+}
+
+/* new window text */
+#mcad-login-page .hideoff {
+  display: none;
+}
+
+/* placeholders */
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: var(--placeholder-color);
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: var(--placeholder-color);
+}
+
+:-ms-input-placeholder {
+  /* IE 10+ */
+  color: var(--placeholder-color);
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: var(--placeholder-color);
+}
+
+
+/* forgot-password link */
+
+#mcad-login-page .forgot {
+  display: block;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+#mcad-login-page .forgot a {
+  display: inline-block;
+  color: var(--inactive-color);
+  text-decoration: none;
+  border-bottom: 0.125rem solid var(--inactive-color);
+}
+
+#mcad-login-page .forgot a:hover,
+#mcad-login-page .forgot a:active {
+  color: #fff;
+}
+
+/* Errors */
+
+#loginErrorMessage {
+  background: transparent;
+  border: 0;
+  max-width: 23em;
+  margin: auto;
+  font-weight: 300;
+  color: #ffd630;
+}
+
+/* Login Page Announcements */
+
+#loginAnnouncements {
+  padding: 4rem 0;
+  width: 90%;
+  max-width: 40rem;
+  margin: auto;
+}
+
+#loginAnnouncements h3 {
+  display: none;
+}
+
+#loginAnnouncements li {
+  background: #171717;
+  color: #ccc;
+  border-left: 0.25rem solid yellow;
+  text-align: left;
+  font-size: 1rem;
+  padding: 1rem;
+
+}
+
+/* Bb Announcement Heading ... crazy, right? */
+#loginAnnouncements ul li>strong:first-child {
+  font-weight: 300;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+}
+
+#loginAnnouncements .announcementDate {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+#loginAnnouncements a {
+  border-bottom: none;
+}
+
+#loginAnnouncements ul {
+  width: auto;
+}
+
+#loginAnnouncements ul li .vtbegenerated strong:first-child {
+  color: #ccc;
+}
+
+#loginAnnouncements .vtbegenerated {
+  margin: 1rem 0 !important;
+}
+
+#loginAnnouncements .announcementDate {
+  float: none;
+  text-align: left;
+  display: block;
+}
+
+#loginFormList label {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+/* aux-login-form */
+#mcad-login-page .js-toggle-aux-login {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #666;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  display: inline-block;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+#mcad-login-page .aux-login-container .aux-login-form {
+  display: none;
+}
+
+#mcad-login-page .aux-login-container.is-open .js-toggle-aux-login {
+  transform: rotate(45deg);
+  color: #fff;
+}
+
+#mcad-login-page .aux-login-container.is-open .aux-login-form {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background: #171717;
+}
+
+#mcad-login-page .aux-login-heading {
+  margin: auto;
+  max-width: 25rem;
+  padding: 1rem;
+}
+
+@media (max-width: 33em) {
+  #mcad-login-page {
+    padding-top: 5em;
+  }
+  #mcad-login-page .page-heading {
+    font-size: 4.5em;
+    margin-bottom: 0.25em;
+  }
+  #loginErrorMessage {
+    max-width: 20em;
+  }
+}
+
+@media (max-width: 20em) {
+  #mcad-login-page {
+    padding-top: 4em;
+  }
+  #mcad-login-page .page-heading {
+    font-size: 4em;
+    margin-bottom: 0;
+  }
+}
         </style>
       </bbNG:cssBlock>
 
@@ -351,6 +456,16 @@ must be removed before the changes will take effect.
           Online Learning
         </div>
         <!-- .mcad-brand-frame -->
+
+    <!-- Page Heading -->
+    <h1 class="page-heading">Blackboard</h1>
+    <h2 class="page-subheading">Minneapolis College of Art and Design</h2>
+
+    <!-- SSO Login Form -->
+    <div class="mcad-login-form">
+      <a href="https://freshprince.mcad.edu/auth-saml/saml/login?apId=_7_1&amp;redirectUrl=https%3A%2F%2Ffreshprince.mcad.edu%2Fwebapps%2Fportal%2Fexecute%2FdefaultTab"
+        class="button">Login</a>
+    </div>
 
         <h1 class="page-heading">Blackboard</h1>
 

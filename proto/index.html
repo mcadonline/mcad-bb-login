@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -8,41 +9,168 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
+  <script type="text/javascript">
+    function loadLoginPage() {
+      if (top != self) {
+        top.location.replace(self.location.href);
+      }
+      if (document.forms.login.user_id != undefined) {
+        document.forms.login.user_id.focus();
+      }
+      setTimeout("triggerScreenreaderAlert()", 500);
+    }
+
+    function triggerScreenreaderAlert() {
+      if (document.getElementById('loginErrorMessage')) {
+        $('loginErrorMessage').update($('loginErrorMessage').innerHTML);
+      }
+    }
+
+    // MCAD Login Specific Stuff Below
+
+    // fires fn when document is in ready state
+    function ready(fn) {
+      if (document.readyState != 'loading') {
+        fn();
+      } else {
+        document.addEventListener('DOMContentLoaded', fn);
+      }
+    }
+
+    function setPlaceholder(selector, placeholderVal) {
+      document
+        .querySelector(selector)
+        .setAttribute('placeholder', placeholderVal);
+    }
+
+    function handleAuxLoginToggle() {
+      const auxLoginEl = document.querySelector('.aux-login-container');
+      const toggleButton = document.querySelector('.js-toggle-aux-login');
+      toggleButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        auxLoginEl.classList.toggle('is-open');
+      });
+    }
+
+    function init() {
+      setPlaceholder('#user_id', 'Username');
+      setPlaceholder('#password', 'Password');
+      handleAuxLoginToggle();
+    }
+
+    // fire off init when doc is ready
+    ready(init);
+
+  </script>
 </head>
+
 <body class="mcad-login-page">
-    <!--[if lte IE 9]>
+  <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
 
-  <div class="brand-frame">
-      MCAD <svg width="12px" height="12px" viewBox="0 0 230 230" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
-    <title>Artboard</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" fill="#FFF">
-            <path d="M155.910363,135.2942 L230,209.383836 L209.7058,230 L135.616164,155.910363 L155.910363,135.2942 L155.910363,135.2942 Z M209.7058,8.52651283e-14 L230,20.2941999 L155.910363,94.3838364 L135.616164,74.0896365 L209.7058,8.52651283e-14 L209.7058,8.52651283e-14 Z M20.6161636,8.52651283e-14 L135.616164,115 L20.6161636,229.67827 L0.322196769,209.383836 L94.3838364,115 L0,20.2941999 L20.6161636,8.52651283e-14 L20.6161636,8.52651283e-14 Z" id="MCAD_X_Logo"></path>
+
+  <!-- Below is (mostly) Bb's HTML. I cannot be held responsible. -->
+  <div id="mcad-login-page">
+    <div class="brand-frame">
+      MCAD
+      <svg width="12px" height="12px" viewBox="0 0 230 230" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <!-- THE MCAD X -->
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="Artboard" fill="#FFF">
+            <path d="M155.910363,135.2942 L230,209.383836 L209.7058,230 L135.616164,155.910363 L155.910363,135.2942 L155.910363,135.2942 Z M209.7058,8.52651283e-14 L230,20.2941999 L155.910363,94.3838364 L135.616164,74.0896365 L209.7058,8.52651283e-14 L209.7058,8.52651283e-14 Z M20.6161636,8.52651283e-14 L135.616164,115 L20.6161636,229.67827 L0.322196769,209.383836 L94.3838364,115 L0,20.2941999 L20.6161636,8.52651283e-14 L20.6161636,8.52651283e-14 Z"
+              id="MCAD_X_Logo"></path>
+          </g>
         </g>
-    </g>
-</svg> Online Learning
+      </svg>
+      Online Learning
+    </div>
+    <!-- .mcad-brand-frame -->
+
+    <h1 class="page-heading">Blackboard</h1>
+    <h2 class="page-subheading">Minneapolis College of Art and Design</h2>
+
+    <div class="mcad-login-form">
+      <a href="https://freshprince.mcad.edu/auth-saml/saml/login?apId=_7_1&amp;redirectUrl=https%3A%2F%2Ffreshprince.mcad.edu%2Fwebapps%2Fportal%2Fexecute%2FdefaultTab"
+        class="button">Login</a>
+    </div>
+
+    <div class="mcad-system-announcements">
+      <div id="loginAnnouncements">
+        <h3>System Announcements</h3>
+        <ul>
+          <li>
+            <strong>Blackboard Maintenance</strong>
+            <em class="announcementDate">
+              (Wednesday, April 18, 2018)
+            </em>
+            <br>
+            <div class="vtbegenerated">
+              <p>
+                <strong>Wed, May 16, 2018
+                  <br>
+                </strong>8:00am – 10:00pm (Central)</p>
+              <p>During this time, Blackboard will be unavailable to ALL users for between Semester Maintenance. If you have
+                any questions or concerns, please contact
+                <a href="mailto:online@mcad.edu">online@mcad.edu</a>.</p>
+              <br>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="aux-login-container">
+      <a href="#!" class="js-toggle-aux-login">+</a>
+      <div class="aux-login-form">
+
+        <h1 class="aux-login-heading">
+          Blackboard Internal Login
+        </h1>
+
+        <div id="loginErrorMessage" class="receipt bad editmode alert-box alert" role="alert" data-alert="">The username or password you typed is incorrect. Please try again. If you still cannot log in, contact your system
+          administrator.
+        </div>
+        <div class="mcad-login-form">
+          <form action="/webapps/login/" onsubmit="return validate_form( this, false, true );" method="POST" name="login">
+
+            <div id="loginFormTitle">
+              <h2>Have an account?</h2>
+            </div>
+
+            <div id="loginFormText">
+              <p>Please enter your credentials and click the
+                <b>Login</b> button below.
+              </p>
+            </div>
+
+            <div id="loginFormFields" class="clearfix">
+              <ul id="loginFormList" class="clearfix">
+                <li class="clearfix">
+                  <label for="user_id">Username</label>
+                  <input type="text" name="user_id" id="user_id" size="25" maxlength="50" placeholder="Username">
+                </li>
+                <li class="clearfix">
+                  <label for="password">Password</label>
+                  <input size="25" name="password" id="password" type="password" autocomplete="off" placeholder="Password">
+                </li>
+                <li class="clearfix">
+                  <input id="entry-login" type="submit" value="Login" name="login" class="button expand">
+                </li>
+                <li class="clearfix">
+                  <span class="forgot">
+                    <a href="#!">Forgot Your Password?</a>
+                    <span class="hideoff">(new window)</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+            <input type="hidden" name="action" value="login">
+            <input type="hidden" name="new_loc" value="">
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <h1 class="page-heading">Blackboard</h1>
-
-  <form method="POST" action="javascript:void(0);">
-      <div class="field-group">
-        <input id="username" name="username" type="text" placeholder="username" required>
-        <label for="username" class="visuallyhidden">Username</label>
-      </div>
-      <div class="field-group">
-        <input id="password" name="password" type="password" placeholder="password" required>
-        <label for="password" class="visuallyhidden">Password</label>
-      </div>
-      <button type="submit">Login</button>
-      <p class="forgot-password">
-        <a href="#!" >Forgot Password?</a>
-      </p>
-  </form>
 </body>
+
 </html>

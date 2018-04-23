@@ -1,14 +1,18 @@
 {
-  "name": "mcad-blackboard-login-2017",
+  "name": "mcad-bb-login",
   "version": "1.0.0",
   "description": "New login page for Bb",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcadonline/mcad-bb-login"
+  },
   "scripts": {
-    "dev": "browser-sync start --server 'proto' --files 'proto'"
+    "start": "browser-sync start --server 'proto' --files 'proto'"
   },
   "author": "James Johnson <james_johnson@mcad.edu>",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.18.8"
+    "browser-sync": "^2.23.7"
   }
 }
