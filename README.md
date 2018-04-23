@@ -9,5 +9,5 @@ Use `login.jsp` for uploading.
 To start the prototype:
 
 ```
-npm run dev
+npm start
 ```
