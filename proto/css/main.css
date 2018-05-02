@@ -20,29 +20,27 @@ html {
 }
 
 body {
-  height: inherit;
   min-height: 100%;
-  background-image: linear-gradient(
-    -180deg,
-    #ff5656 2%,
-    #df9870 47%,
-    #51def0 100%
-  );
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: linear-gradient(-180deg, #ff5656 2%, #df9870 47%, #51def0 100%)
+    no-repeat fixed;
 }
 
 #mcad-login-page {
-  height: inherit;
+  min-height: 100vh;
   font-size: 16px;
   line-height: 1.4;
   font-family: var(--sans-font-family);
   font-weight: 200;
-  min-height: inherit;
-  background: url("../img/circle-polygon-bg.svg") no-repeat 90% 90%,
-    url("../img/lines-left-bg.svg") no-repeat left bottom,
-    url("../img/lines-right-bg.svg") no-repeat right top,
-    url("../img/tri-bg.svg") no-repeat 20% 40%;
+  /* using raw git rather than relative urls */
+  background: url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/circle-polygon-bg.svg")
+      no-repeat 90% 90%,
+    /* lines left svg */
+      url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-left-bg.svg")
+      no-repeat left 100%,
+    url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-right-bg.svg")
+      no-repeat right top,
+    url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/tri-bg.svg")
+      no-repeat 20% 40%;
   color: #fff;
 }
 
@@ -307,46 +305,6 @@ body {
   border: 0;
 }
 
-/* aux-login-form */
-#mcad-login-page .js-toggle-aux-login {
-  text-decoration: none;
-  font-size: 2rem;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: 1000;
-  display: inline-block;
-  padding: 1rem;
-  transition: transform 0.3s ease;
-}
-
-#mcad-login-page .aux-login-container .aux-login-form {
-  display: none;
-}
-
-#mcad-login-page .aux-login-container.is-open .js-toggle-aux-login {
-  transform: rotate(45deg);
-  color: #fff;
-}
-
-#mcad-login-page .aux-login-container.is-open .aux-login-form {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
-  background: #171717;
-}
-
-#mcad-login-page .aux-login-heading {
-  margin: auto;
-  max-width: 25rem;
-  padding: 1rem;
-}
-
 /* SSO */
 #mcad-login-page #redirectProvidersDropdownButton {
   display: none;
@@ -362,21 +320,50 @@ body {
   border: none;
   box-shadow: none;
   border-radius: 0;
+  padding: 0;
+  position: static;
 }
 
-#defaultProviderIcon {
+#mcad-login-page #loginRedirectProviderList .defaultProviderIcon {
   display: none;
 }
 
-/* Typical User Login:
-/* hide default login form and only reveal SSO */
-#mcad-login-page .mcad-login-container form {
+/* Toggle Login form (and SSO button off) */
+#mcad-login-page .js-toggle-aux-login {
+  text-decoration: none;
+  font-size: 2rem;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+  display: inline-block;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+/* by default, do not display
+   the login form, only the SSO button */
+#mcad-login-page .mcad-login-form form {
   display: none;
 }
 
-/* Aux User Login (e.g. admins)
-/* hide SSO button and only reveal default login form */
-#mcad-login-page .aux-login-container {
+#mcad-login-page.aux-login-is-open .js-toggle-aux-login {
+  transform: rotate(45deg);
+  color: #fff;
+}
+
+#mcad-login-page.aux-login-is-open {
+  background: #171717;
+  height: 100%;
+}
+
+#mcad-login-page.aux-login-is-open .mcad-login-form form {
+  display: block;
+}
+
+#mcad-login-page.aux-login-is-open #loginRedirectProviderList {
+  display: none;
 }
 
 @media (max-width: 33em) {
@@ -399,15 +386,37 @@ body {
   #loginErrorMessage {
     max-width: 20em;
   }
+  #mcad-login-page [type="submit"],
+  #mcad-login-page .button,
+  /* SSO Login Button */
+  #mcad-login-page #loginRedirectProviderList > li > a {
+    font-size: 1.25rem;
+  }
 }
 
 @media (max-width: 20em) {
-  #mcad-login-page {
-    padding-top: 4em;
-  }
   #mcad-login-page .page-heading {
-    font-size: 4em;
+    font-size: 3.45em;
+    padding-top: 2rem;
     margin-bottom: 0;
+  }
+  #mcad-login-page .page-subheading {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  #mcad-login-page.aux-login-is-open .page-subheading {
+    /* hide text and replace with below */
+    text-indent: -999em;
+  }
+  #mcad-login-page.aux-login-is-open .page-subheading:after {
+    text-indent: 0;
+    content: "Administrative Login";
+    display: block;
+    color: yellow;
+  }
+
+  #loginAnnouncements {
+    padding: 1rem 0;
   }
 }
 

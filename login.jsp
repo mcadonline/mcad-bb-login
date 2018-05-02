@@ -33,40 +33,56 @@ This is a standard wrapper for all AS pages.  It is recommended that you keep th
       }
     }
 
-    // MCAD Login Specific Stuff Below
+ function loadLoginPage() {
+  if (top != self) {
+    top.location.replace(self.location.href);
+  }
+  if (document.forms.login.user_id != undefined) {
+    document.forms.login.user_id.focus();
+  }
+  setTimeout("triggerScreenreaderAlert()", 500);
+}
 
-    // fires fn when document is in ready state
-    function ready(fn) {
-      if (document.readyState != 'loading') {
-        fn();
-      } else {
-        document.addEventListener('DOMContentLoaded', fn);
-      }
-    }
+function triggerScreenreaderAlert() {
+  if (document.getElementById("loginErrorMessage")) {
+    $("loginErrorMessage").update($("loginErrorMessage").innerHTML);
+  }
+}
 
-    function setPlaceholder(selector, placeholderVal) {
-      document
-        .querySelector(selector)
-        .setAttribute('placeholder', placeholderVal);
-    }
+// MCAD Login Specific Stuff Below
 
-    function handleAuxLoginToggle() {
-      const auxLoginEl = document.querySelector('.aux-login-container');
-      const toggleButton = document.querySelector('.js-toggle-aux-login');
-      toggleButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        auxLoginEl.classList.toggle('is-open');
-      });
-    }
+// fires fn when document is in ready state
+function ready(fn) {
+  if (document.readyState != "loading") {
+    fn();
+  } else {
+    document.addEventListener("DOMContentLoaded", fn);
+  }
+}
 
-    function init() {
-      setPlaceholder('#user_id', 'Username');
-      setPlaceholder('#password', 'Password');
-      handleAuxLoginToggle();
-    }
+function setPlaceholder(selector, placeholderVal) {
+  document.querySelector(selector).setAttribute("placeholder", placeholderVal);
+}
 
-    // fire off init when doc is ready
-    ready(init);
+function handleAuxLoginToggle() {
+  const container = document.querySelector("#mcad-login-page");
+  const toggleButton = document.querySelector(".js-toggle-aux-login");
+  toggleButton.addEventListener("click", event => {
+    event.preventDefault();
+    container.classList.toggle("aux-login-is-open");
+  });
+}
+
+function init() {
+  setPlaceholder("#user_id", "Username");
+  setPlaceholder("#password", "Password");
+  handleAuxLoginToggle();
+  console.log("ready");
+}
+
+// fire off init when doc is ready
+ready(init);
+
 
       </script>
     </bbNG:jsBlock>
@@ -79,7 +95,7 @@ must be removed before the changes will take effect.
 
       <bbNG:cssBlock>
         <style type="text/css">
-         html {
+html {
   box-sizing: border-box;
   height: 100%;
 }
@@ -101,29 +117,27 @@ must be removed before the changes will take effect.
 }
 
 body {
-  height: inherit;
   min-height: 100%;
-  background-image: linear-gradient(
-    -180deg,
-    #ff5656 2%,
-    #df9870 47%,
-    #51def0 100%
-  );
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: linear-gradient(-180deg, #ff5656 2%, #df9870 47%, #51def0 100%)
+    no-repeat fixed;
 }
 
 #mcad-login-page {
-  height: inherit;
+  min-height: 100vh;
   font-size: 16px;
   line-height: 1.4;
   font-family: var(--sans-font-family);
   font-weight: 200;
-  min-height: inherit;
-  background: url("../img/circle-polygon-bg.svg") no-repeat 90% 90%,
-    url("../img/lines-left-bg.svg") no-repeat left bottom,
-    url("../img/lines-right-bg.svg") no-repeat right top,
-    url("../img/tri-bg.svg") no-repeat 20% 40%;
+  /* using raw git rather than relative urls */
+  background: url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/circle-polygon-bg.svg")
+      no-repeat 90% 90%,
+    /* lines left svg */
+      url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-left-bg.svg")
+      no-repeat left 100%,
+    url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-right-bg.svg")
+      no-repeat right top,
+    url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/tri-bg.svg")
+      no-repeat 20% 40%;
   color: #fff;
 }
 
@@ -177,7 +191,7 @@ body {
 }
 
 #mcad-login-page .page-subheading {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   margin-bottom: 2em;
 }
 
@@ -223,11 +237,13 @@ body {
 }
 
 #mcad-login-page [type="submit"],
-#mcad-login-page .button {
+#mcad-login-page .button,
+/* SSO Login Button */
+#mcad-login-page #loginRedirectProviderList > li > a {
   background-color: transparent;
   font-weight: 300;
   color: var(--login-button-color);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   letter-spacing: 0.25rem;
   border: 0.125rem solid var(--login-button-color);
   margin: 1rem 0;
@@ -386,7 +402,30 @@ body {
   border: 0;
 }
 
-/* aux-login-form */
+/* SSO */
+#mcad-login-page #redirectProvidersDropdownButton {
+  display: none;
+}
+#mcad-login-page #loginRedirectProviders {
+  margin: auto;
+  width: auto;
+}
+
+#mcad-login-page #loginRedirectProviderList {
+  display: block;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+  position: static;
+}
+
+#mcad-login-page #loginRedirectProviderList .defaultProviderIcon {
+  display: none;
+}
+
+/* Toggle Login form (and SSO button off) */
 #mcad-login-page .js-toggle-aux-login {
   text-decoration: none;
   font-size: 2rem;
@@ -400,30 +439,28 @@ body {
   transition: transform 0.3s ease;
 }
 
-#mcad-login-page .aux-login-container .aux-login-form {
+/* by default, do not display
+   the login form, only the SSO button */
+#mcad-login-page .mcad-login-form form {
   display: none;
 }
 
-#mcad-login-page .aux-login-container.is-open .js-toggle-aux-login {
+#mcad-login-page.aux-login-is-open .js-toggle-aux-login {
   transform: rotate(45deg);
   color: #fff;
 }
 
-#mcad-login-page .aux-login-container.is-open .aux-login-form {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 100;
+#mcad-login-page.aux-login-is-open {
   background: #171717;
+  height: 100%;
 }
 
-#mcad-login-page .aux-login-heading {
-  margin: auto;
-  max-width: 25rem;
-  padding: 1rem;
+#mcad-login-page.aux-login-is-open .mcad-login-form form {
+  display: block;
+}
+
+#mcad-login-page.aux-login-is-open #loginRedirectProviderList {
+  display: none;
 }
 
 @media (max-width: 33em) {
@@ -436,7 +473,7 @@ body {
     margin: 0;
   }
   #mcad-login-page .page-subheading {
-    font-size: 1.33rem;
+    font-size: 1.33em;
     margin-top: 0.5rem;
   }
   #mcad-login-page .button {
@@ -446,15 +483,44 @@ body {
   #loginErrorMessage {
     max-width: 20em;
   }
+  #mcad-login-page [type="submit"],
+  #mcad-login-page .button,
+  /* SSO Login Button */
+  #mcad-login-page #loginRedirectProviderList > li > a {
+    font-size: 1.25rem;
+  }
 }
 
 @media (max-width: 20em) {
-  #mcad-login-page {
-    padding-top: 4em;
-  }
   #mcad-login-page .page-heading {
-    font-size: 4em;
+    font-size: 3.45em;
+    padding-top: 2rem;
     margin-bottom: 0;
+  }
+  #mcad-login-page .page-subheading {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  #mcad-login-page.aux-login-is-open .page-subheading {
+    /* hide text and replace with below */
+    text-indent: -999em;
+  }
+  #mcad-login-page.aux-login-is-open .page-subheading:after {
+    text-indent: 0;
+    content: "Administrative Login";
+    display: block;
+    color: yellow;
+  }
+
+  #loginAnnouncements {
+    padding: 1rem 0;
+  }
+}
+
+/* Override 14px font-size in body */
+@media only screen and (max-width: 1024px) and (min-width: 737px) {
+  body {
+    font-size: 16px;
   }
 }
 
@@ -481,6 +547,8 @@ body {
     <h1 class="page-heading">Blackboard</h1>
     <h2 class="page-subheading">Minneapolis College of Art and Design</h2>
     <div class="mcad-login-container">
+      <a href="#!" class="js-toggle-aux-login">+</a>
+
       <loginUI:errorMessage />
       <div class="mcad-login-form">
         <loginUI:loginForm />
@@ -490,19 +558,5 @@ body {
     <div class="mcad-system-announcements">
       <loginUI:systemAnnouncements maxItems="5" />
     </div>
-
-    <div class="aux-login-container">
-      <a href="#!" class="js-toggle-aux-login">+</a>
-      <div class="aux-login-form">
-
-        <h1 class="aux-login-heading">
-          Blackboard Internal Login
-        </h1>
-        <div class="mcad-login-form">
-          <loginUI:loginForm />
-        </div>
-      </div><!-- .aux-login-form -->
-    </div><!-- .aux-login-container -->
-
   </div><!-- #mcad-login-page -->
 </bbNG:genericPage>
