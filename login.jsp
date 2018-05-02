@@ -452,7 +452,6 @@ body {
 
 #mcad-login-page.aux-login-is-open {
   background: #171717;
-  height: 100%;
 }
 
 #mcad-login-page.aux-login-is-open .mcad-login-form form {
