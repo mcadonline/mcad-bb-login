@@ -1,5 +1,3 @@
-/* .visuallyhidden */
-
 html {
   box-sizing: border-box;
   height: 100%;
@@ -98,7 +96,7 @@ body {
 }
 
 #mcad-login-page .page-subheading {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   margin-bottom: 2em;
 }
 
@@ -144,11 +142,13 @@ body {
 }
 
 #mcad-login-page [type="submit"],
-#mcad-login-page .button {
+#mcad-login-page .button,
+/* SSO Login Button */
+#mcad-login-page #loginRedirectProviderList > li > a {
   background-color: transparent;
   font-weight: 300;
   color: var(--login-button-color);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   letter-spacing: 0.25rem;
   border: 0.125rem solid var(--login-button-color);
   margin: 1rem 0;
@@ -277,6 +277,7 @@ body {
 
 #loginAnnouncements ul {
   width: auto;
+  padding: 0;
 }
 
 #loginAnnouncements ul li .vtbegenerated strong:first-child {
@@ -346,13 +347,49 @@ body {
   padding: 1rem;
 }
 
+/* SSO */
+#mcad-login-page #redirectProvidersDropdownButton {
+  display: none;
+}
+#mcad-login-page #loginRedirectProviders {
+  margin: auto;
+  width: auto;
+}
+
+#mcad-login-page #loginRedirectProviderList {
+  display: block;
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+#defaultProviderIcon {
+  display: none;
+}
+
+/* Typical User Login:
+/* hide default login form and only reveal SSO */
+#mcad-login-page .mcad-login-container form {
+  display: none;
+}
+
+/* Aux User Login (e.g. admins)
+/* hide SSO button and only reveal default login form */
+#mcad-login-page .aux-login-container {
+}
+
 @media (max-width: 33em) {
+  #mcad-login-page {
+    background: url("../img/lines-left-bg.svg") no-repeat left bottom,
+      url("../img/lines-right-bg.svg") no-repeat right top;
+  }
   #mcad-login-page .page-heading {
     font-size: 4.5em;
     margin: 0;
   }
   #mcad-login-page .page-subheading {
-    font-size: 1.33rem;
+    font-size: 1.33em;
     margin-top: 0.5rem;
   }
   #mcad-login-page .button {
@@ -371,5 +408,12 @@ body {
   #mcad-login-page .page-heading {
     font-size: 4em;
     margin-bottom: 0;
+  }
+}
+
+/* Override 14px font-size in body */
+@media only screen and (max-width: 1024px) and (min-width: 737px) {
+  body {
+    font-size: 16px;
   }
 }
