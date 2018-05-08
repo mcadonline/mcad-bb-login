@@ -370,6 +370,19 @@ body.login-page {
   display: none;
 }
 
+/* P5JS Canvas */
+canvas {
+  box-sizing: border-box;
+  border: 1px solid blue;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+}
+
 @media (max-width: 33em) {
   #mcad-login-page {
     background: url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-left-bg.svg")
