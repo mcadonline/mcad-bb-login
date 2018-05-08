@@ -25,8 +25,12 @@ body {
     no-repeat fixed;
 }
 
+body.login-page {
+  min-height: 100%;
+}
+
 #mcad-login-page {
-  min-height: 100vh;
+  min-height: 100%;
   font-size: 16px;
   line-height: 1.4;
   font-family: var(--sans-font-family);
@@ -229,7 +233,8 @@ body {
   max-width: 23em;
   margin: auto;
   font-weight: 300;
-  color: #ffd630;
+  color: #fff;
+  font-style: italic;
 }
 
 /* Login Page Announcements */
@@ -367,8 +372,10 @@ body {
 
 @media (max-width: 33em) {
   #mcad-login-page {
-    background: url("../img/lines-left-bg.svg") no-repeat left bottom,
-      url("../img/lines-right-bg.svg") no-repeat right top;
+    background: url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-left-bg.svg")
+        no-repeat left 100%,
+      url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-right-bg.svg")
+        no-repeat right top;
   }
   #mcad-login-page .page-heading {
     font-size: 4.5em;
