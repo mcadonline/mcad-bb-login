@@ -8,11 +8,12 @@
     "url": "https://github.com/mcadonline/mcad-bb-login"
   },
   "scripts": {
-    "start": "browser-sync start --server 'proto' --files 'proto'"
+    "start": "parcel proto"
   },
   "author": "James Johnson <james_johnson@mcad.edu>",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.23.7"
+    "browser-sync": "^2.24.4",
+    "parcel": "^1.8.1"
   }
 }
