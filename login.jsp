@@ -95,7 +95,7 @@ must be removed before the changes will take effect.
 
       <bbNG:cssBlock>
         <style type="text/css">
-html {
+					html {
   box-sizing: border-box;
   height: 100%;
 }
@@ -107,47 +107,32 @@ html {
 }
 
 :root {
-  --inactive-color: #888;
+  --color-primary: #000;
+  --color-primary-inverse: #fff;
+  --color-background: linear-gradient(-180deg, #edff5a 2%, #51f0b9 100%)
+    no-repeat fixed;
+  /* --inactive-color: #888;
   --placeholder-color: #444;
-  --focus-border-color: #fff;
-  --login-button-color: #fff;
+  --focus-border-color: black;
+  --login-button-color: black; */
   --sans-font-family: "Helvetica Neue", sans-serif;
-  --frame-color: #fff;
+  /* --frame-color: black; */
   --max-width: 32em;
 }
 
-body {
-  min-height: 100%;
-  background: linear-gradient(-180deg, #ff5656 2%, #df9870 47%, #51def0 100%)
-    no-repeat fixed;
-}
-
-body.login-page {
-  min-height: 100%;
-}
-
 #mcad-login-page {
-  min-height: 100%;
+  min-height: 100vh;
   font-size: 16px;
   line-height: 1.4;
   font-family: var(--sans-font-family);
   font-weight: 200;
-  /* using raw git rather than relative urls */
-  background: url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/circle-polygon-bg.svg")
-      no-repeat 90% 90%,
-    /* lines left svg */
-      url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-left-bg.svg")
-      no-repeat left 100%,
-    url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/lines-right-bg.svg")
-      no-repeat right top,
-    url("https://cdn.rawgit.com/mcadonline/mcad-bb-login/develop/proto/img/tri-bg.svg")
-      no-repeat 20% 40%;
-  color: #fff;
+  background: var(--color-background);
+  color: var(--color-primary);
 }
 
-#mcad-login-page a {
+/* #mcad-login-page a {
   color: #fff;
-}
+} */
 
 #mcad-login-page h1 {
   padding-top: 5rem;
@@ -166,12 +151,12 @@ body.login-page {
   line-height: 1;
   width: 90%;
   margin: 0 5%;
-  border-bottom: 1px solid var(--frame-color);
+  border-bottom: 1px solid var(--color-primary);
   padding: 1em;
   text-align: center;
   text-transform: uppercase;
   font-weight: 400;
-  color: var(--frame-color);
+  color: var(--color-primary);
 }
 
 #mcad-login-page .brand-frame svg {
@@ -179,7 +164,7 @@ body.login-page {
 }
 
 #mcad-login-page .brand-frame svg g {
-  fill: var(--frame-color);
+  fill: var(--color-primary);
 }
 
 #mcad-login-page .page-heading,
@@ -229,7 +214,7 @@ body.login-page {
   max-width: 25rem;
   padding: 0.5rem 0;
   border: none;
-  border-bottom: 0.125rem solid var(--inactive-color);
+  border-bottom: 0.125rem solid var(--color-primary);
   margin: 1em 0;
   background: transparent;
   border-radius: 0;
@@ -237,7 +222,7 @@ body.login-page {
 
 #mcad-login-page input:focus {
   outline: none;
-  border-color: var(--focus-border-color);
+  border-color: var(--color-primary);
 }
 
 #mcad-login-page [type="submit"],
@@ -246,10 +231,10 @@ body.login-page {
 #mcad-login-page #loginRedirectProviderList > li > a {
   background-color: transparent;
   font-weight: 300;
-  color: var(--login-button-color);
+  color: var(--color-primary);
   font-size: 1.5rem;
   letter-spacing: 0.25rem;
-  border: 0.125rem solid var(--login-button-color);
+  border: 0.125rem solid var(--color-primary);
   margin: 1rem 0;
   padding: 1rem;
   display: block;
@@ -266,8 +251,8 @@ body.login-page {
 
 #mcad-login-page [type="submit"]:hover,
 #mcad-login-page .button:hover {
-  background-color: var(--login-button-color);
-  color: #555;
+  background-color: var(--color-primary);
+  color: var(--color-primary-inverse);
 }
 
 #mcad-login-page [type="submit"]:active,
@@ -305,21 +290,7 @@ body.login-page {
 /* forgot-password link */
 
 #mcad-login-page .forgot {
-  display: block;
-  font-size: 0.8em;
-  text-align: right;
-}
-
-#mcad-login-page .forgot a {
-  display: inline-block;
-  color: var(--inactive-color);
-  text-decoration: none;
-  border-bottom: 0.125rem solid var(--inactive-color);
-}
-
-#mcad-login-page .forgot a:hover,
-#mcad-login-page .forgot a:active {
-  color: #fff;
+  display: none;
 }
 
 /* Errors */
@@ -330,7 +301,7 @@ body.login-page {
   max-width: 23em;
   margin: auto;
   font-weight: 300;
-  color: #fff;
+  color: var(--color-primary);
   font-style: italic;
 }
 
@@ -348,8 +319,8 @@ body.login-page {
 }
 
 #loginAnnouncements li {
-  background: #fff;
-  color: #333;
+  background: var(--color-primary-inverse);
+  color: var(--color-primary);
   border-left: 0.25rem solid #51def0;
   text-align: left;
   font-size: 1rem;
@@ -381,7 +352,7 @@ body.login-page {
 }
 
 #loginAnnouncements ul li .vtbegenerated strong:first-child {
-  color: #333;
+  color: var(--color-primary);
 }
 
 #loginAnnouncements .vtbegenerated {
@@ -442,6 +413,7 @@ body.login-page {
   display: inline-block;
   padding: 1rem;
   transition: transform 0.3s ease;
+  transform-origin: center;
 }
 
 /* by default, do not display
@@ -451,12 +423,33 @@ body.login-page {
 }
 
 #mcad-login-page.aux-login-is-open .js-toggle-aux-login {
-  transform: rotate(45deg);
   color: #fff;
+  transform: rotate(45deg);
 }
 
 #mcad-login-page.aux-login-is-open {
-  background: #171717;
+  --color-primary: #ccc;
+  --color-primary-inverse: black;
+  --placeholder-color: #666;
+  height: 100%;
+  background: var(--color-primary-inverse);
+  color: var(--color-primary);
+}
+
+#mcad-login-page.aux-login-is-open a {
+  color: var(--color-primary);
+}
+
+#mcad-login-page.aux-login-is-open #loginAnnouncements ul li {
+  background: #333;
+}
+
+#mcad-login-page.aux-login-is-open
+  #loginAnnouncements
+  ul
+  li
+  > strong:first-child {
+  color: var(---color-primary);
 }
 
 #mcad-login-page.aux-login-is-open .mcad-login-form form {
@@ -529,8 +522,9 @@ body.login-page {
     font-size: 16px;
   }
 }
-  </style>
-</bbNG:cssBlock>
+
+  			</style>
+			</bbNG:cssBlock>
 
       <div id="mcad-login-page">
         <div class="brand-frame">
